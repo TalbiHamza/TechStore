@@ -2,7 +2,7 @@ name: learn-github-actions
 
 on:
   push:
-    branches: [master] # Or 'main' if that's your real branch
+    branches: [master]
 
 jobs:
   build:
