@@ -1,11 +1,9 @@
 name: learn-github-actions
 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [master]
-  pull_request:
-    types: [closed]
+    branches: [master] # Or 'main' if that's your real branch
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,15 +17,20 @@ jobs:
           node-version: "16"
 
       - name: Install dependencies
+        working-directory: ./Frontend
         run: npm install
 
       - name: Build project
+        working-directory: ./Frontend
         run: npm run build
 
   push_docker:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -43,8 +46,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ./
-          file: ./Dockerfile
+          context: ./Frontend
+          file: ./Frontend/Dockerfile
           push: true
           tags: ${{ secrets.DockerHubUsername }}/frontend:latest
 
@@ -52,5 +55,4 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: ${{ secrets.DockerHubUsername }}/frontend:latest
-          run: |
-            echo "running the docker image"
+          run: echo "running the docker image"
