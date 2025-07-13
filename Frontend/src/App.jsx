@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import React from "react";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,7 +23,12 @@ const App = () => {
       } else {
         setuser(jwtUser);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      toast.error("Failed to load user data. Please log in again.");
+      localStorage.removeItem("token");
+      location.reload();
+    }
   }, []);
 
   return (
