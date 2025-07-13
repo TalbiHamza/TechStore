@@ -2,18 +2,6 @@
 
 ---
 
-## 📚 Table of Contents
-
-- [📘 Solution Overview](#📘-solution-overview)
-- [🧭 Architecture Diagram](#🧭-architecture-diagram)
-- [🛠️ AWS Services Used](#🛠️-aws-services-used)
-- [🚀 Deployment Guide](#🚀-deployment-guide)
-- [📊 Monitoring and Alerts](#📊-monitoring-and-alerts)
-- [🔐 Security Best Practices](#🔐-security-best-practices)
-- [💡 Cost Optimization](#💡-cost-optimization)
-
----
-
 ## 📘 Solution Overview
 
 This project demonstrates the deployment of a **highly available, secure, and scalable 2-tier web application** on AWS. It features:
